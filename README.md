@@ -1,6 +1,6 @@
 # Arc Browser Icon Changer
 
-![arc icons](https://i.imgur.com/u93MRIy.png)
+![arc icons](media/arc-icons.png)
 
 A python script for manually changing the Arc Browser icon on macOS.
 
