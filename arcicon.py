@@ -1,4 +1,5 @@
 import os
+import subprocess
 import argparse
 
 
@@ -13,13 +14,12 @@ def change_icon(icon_name: str):
         print(f"Error: '{icon_name}' is not a valid icon name. Choose from {', '.join(icon_names)}.")
         return
     
-    cmd = f"defaults write company.thebrowser.Browser currentAppIconName {icon_name}"
-    
+    command = ["defaults", "write", "company.thebrowser.Browser", "currentAppIconName", icon_name]
     try:
-        os.system(cmd)
-        print(f"Icon changed to {icon_name}, restart arc next")
-    except Exception as exc:
-        print(type(exc), exc.args)
+        subprocess.run(command, check=True)
+        print(f"Icon changed to {icon_name}, restart Arc next")
+    except subprocess.CalledProcessError as e:
+        print(f"Error changing icon: {e}")
 
 
 def main():
@@ -31,6 +31,7 @@ def main():
 
     if args.action == 'set':
         change_icon(args.iconName)
+
 
 if __name__ == "__main__":
     main()
